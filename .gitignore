@@ -1,0 +1,23 @@
+# Local-only — not part of the published extension
+CLAUDE.md
+_dev/
+
+# OS noise
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editor / IDE
+*.swp
+*.swo
+*~
+.vscode/
+.idea/
+
+# web-ext build artifacts (future)
+web-ext-artifacts/
+*.xpi
+*.zip
+
+# Node (in case anyone adds tooling later)
+node_modules/

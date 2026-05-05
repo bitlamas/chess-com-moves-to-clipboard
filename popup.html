@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Chess.com Moves to Clipboard</title>
+<style>
+  :root { color-scheme: light dark; }
+  html, body { margin: 0; padding: 0; box-sizing: border-box; }
+  *, *::before, *::after { box-sizing: inherit; }
+  body {
+    font: 13px/1.4 system-ui, -apple-system, "Segoe UI", sans-serif;
+    width: 240px;
+    padding: 12px;
+    background: Canvas;
+    color: CanvasText;
+  }
+  h1 {
+    font-size: 13px;
+    font-weight: 600;
+    margin: 0 0 10px;
+  }
+  label {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 12px;
+  }
+  label > span {
+    display: block;
+    margin-bottom: 3px;
+    color: GrayText;
+  }
+  select {
+    width: 100%;
+    padding: 4px 6px;
+    font: inherit;
+    color: CanvasText;
+    background: Field;
+    border: 1px solid ButtonBorder;
+    border-radius: 3px;
+  }
+  button {
+    display: block;
+    width: 100%;
+    padding: 8px 10px;
+    margin-top: 4px;
+    font: inherit;
+    font-weight: 600;
+    background: #4a7a3a;
+    color: #fff;
+    border: 1px solid #3d6630;
+    border-radius: 3px;
+    cursor: pointer;
+  }
+  button:is(:hover, :focus-visible):not(:disabled) { background: #3d6630; }
+  button:active:not(:disabled) { background: #2f4f25; }
+  button:disabled { opacity: 0.6; cursor: default; }
+  button:focus-visible,
+  select:focus-visible {
+    outline: 2px solid Highlight;
+    outline-offset: 2px;
+  }
+  @media (forced-colors: active) {
+    button {
+      background: ButtonFace;
+      color: ButtonText;
+      border-color: ButtonBorder;
+    }
+    button:is(:hover, :focus-visible):not(:disabled),
+    button:active:not(:disabled) { background: ButtonFace; }
+  }
+  #status {
+    min-height: 1.4em;
+    margin-top: 8px;
+    font-size: 12px;
+    text-align: start;
+    color: GrayText;
+  }
+  #status.ok  { color: light-dark(#2d8f47, #6fcf80); }
+  #status.err { color: light-dark(#cc3333, #ff7a7a); }
+</style>
+</head>
+<body>
+<h1>Chess.com Moves to Clipboard</h1>
+<label>
+  <span>Format</span>
+  <select id="format">
+    <option value="pairs">One pair per line (default)</option>
+    <option value="pgn-line">PGN single line</option>
+    <option value="pgn-clk">PGN with timestamps</option>
+  </select>
+</label>
+<label>
+  <span>Notation</span>
+  <select id="notation">
+    <option value="san">Standard (Nc3, Bxf6)</option>
+    <option value="figurine">Figurine (&#9822;c3, &#9821;xf6)</option>
+  </select>
+</label>
+<button id="copy" type="button">Copy moves</button>
+<div id="status" role="status" aria-live="polite"></div>
+<script src="popup.js"></script>
+</body>
+</html>
